@@ -1,0 +1,20 @@
+Tarea 5: Responder las siguientes preguntas 
+
+1.- ¿Qué es Ansible? Mencione dos actividades que se puedan hacer con Ansible
+Ansible es una herramienta de automatización que puede ser utilizada para instalar software, gestionar configuraciones y orquestar tareas en múltiples sistemas de manera simultánea.
+Dos actividades que se pueden realizar son instalación de paquetes en servidores y aplicar parches de seguridad.
+
+2.- ¿Qué es un playbook de Ansible?
+Un playbook de Ansible es un archivo en formato YAML que describe un conjunto de tareas a ejecutar en uno o varios hosts remotos. Permite definir el estado deseado de un sistema utilizando módulos y una forma de definirlo declarativa.
+
+3.- ¿Qué información contiene un inventario de Ansible?
+Un inventario de Ansible es un archivo (estático o dinámico) que contiene una lista de nodos o “hosts” en los cuales se ejecutarán las tareas. Puede contener direcciones IP, hostnames, grupos de servidores y parámetros de conexión.
+
+4.- Explique que es un módulo de Ansible y dé un ejemplo.
+Un módulo de Ansible es un conjunto de código python que ejecuta una tarea específica en el host remoto. Cada módulo tiene una función concreta, un ejemplo de módulo es apt, para gestionar paquetes en sistemas basados en debian/ubuntu.
+
+5.- ¿Qué ventajas tiene Ansible sobre otros métodos de automatización?
+-	Gestión de hosts sin hacer uso de agentes (utiliza SSH)
+-	Sencillo de entender y mantener, legible en YAML
+-	Amplia variedad de módulos para utilizar en tareas 
+-	Ejecución idempotente (aplica cambios solo si es necesario, evitando repetir configuraciones). 
