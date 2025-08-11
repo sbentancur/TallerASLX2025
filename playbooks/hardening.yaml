@@ -1,0 +1,83 @@
+---
+- hosts: ubuntu
+  become: yes
+  tasks:
+
+  - name: Sys actualizado
+    ansible.builtin.apt:
+     name: "*"
+     state: latest
+     update_cache: true
+    notify: Reboot server
+
+  - name: Valida UFW permitiendo SSH
+    ansible.builtin.apt:
+      name: ufw
+      state: present
+      update_cache: yes
+
+  - name: Permitir trafico SSH
+    community.general.ufw:
+      rule: allow
+      port: 22
+      proto: tcp
+
+  - name: Configura politicas default
+    community.general.ufw:
+      direction: "{{ item.direction }}"
+      policy: "{{ item.policy }}"
+    loop:
+      - { direction: incoming, policy: deny }
+      - { direction: outgoing, policy: allow }
+
+  - name: Habilita UFW
+    community.general.ufw:
+      state: enabled
+
+  - name: Valida OpenSSH esta instalado
+    ansible.builtin.apt:
+      name: openssh-server
+      state: present
+      update_cache: yes
+
+  - name: Deshabilitar root login
+    ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        insertafter: '^#PermitRootLogin'
+        line: PermitRootLogin no
+    notify: Reboot daemon ssh
+
+  - name: Habilitar login con ssh pub
+    ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        insertafter: '^#PubkeyAuthentication'
+        line: PubkeyAuthentication yes
+    notify: Reboot daemon ssh
+
+  - name: Deshabilitar login por pass SSH
+    ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        insertafter: '^#PasswordAuthentication'
+        line: PasswordAuthentication no
+    notify: Reboot daemon ssh
+
+  - name: Instalar Fail2ban
+    ansible.builtin.apt:
+        name: fail2ban
+        state: present
+        update_cache: yes
+
+  - name: Habilitar y arrancar fail2ban
+    ansible.builtin.systemd_service:
+        name: fail2ban
+        state: started
+
+  handlers:
+
+  - name: Reboot server
+    ansible.builtin.reboot:
+
+  - name: Reboot daemon ssh
+    ansible.builtin.systemd_service:
+      name: ssh
+      state: restarted
