@@ -5,15 +5,20 @@
 -	Ubuntu 24.04 
 -	CentOS Stream 9
 
-
 Se definen las siguientes “IPs” y “hostnames” correspondientes:
-> - ubuntu01: 192.168.1.10
-> - centos01: 192.168.1.15
-> - bastion01: 192.168.1.20
+ - ubuntu01: 192.168.1.10
+ - centos01: 192.168.1.15
+ - bastion01: 192.168.1.20
+
+[Configuración de Hostname](https://www.redhat.com/en/blog/configure-hostname-linux)
+[Configuración de red mediante NMTUI](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/networking_guide/sec-configuring_ip_networking_with_nmtui)
+[Configuración de red NETPLAN](https://netplan.io/)
 
 > [!IMPORTANT]
 > - Existe el usuario “sysadmin” en todos los equipos y se conoce la clave “root” para una eventual elevación de permisos durante la ejecución. 
-> - Clave SSH fue generada y compartida en Bastion hacia los demás “hosts” mediante “ssh-copy-id” 
+> - Clave SSH fue generada y compartida en Bastion hacia los demás “hosts” mediante “ssh-copy-id”
+
+[Crear y compartir SSH](https://www.redhat.com/en/blog/configure-ssh-keygen)
 
 
 # Pasos para ejecutar el repositorio:
@@ -30,4 +35,4 @@ Se definen las siguientes “IPs” y “hostnames” correspondientes:
 6.	Se ejecutan comandos “ad-hoc”
 7.	Se ejecutan “playbooks” generales
   - [ ] `$ ansible-playbook all playbook/hardening.yaml -K`
-  - [ ] `$ ansible-playbook all playbook/nfs_setup.yml) -K`
+  - [ ] `$ ansible-playbook all playbook/nfs_setup.yaml -K`
