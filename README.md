@@ -27,15 +27,14 @@ Se definen las siguientes “IPs” y “hostnames” correspondientes:
 # Pasos para ejecutar el repositorio:
 1.	Copiar SSH de Github: Hacer click en CODE y copiar la opción de HTTPS
 2.	En Bastion01, instalar como administrador "ansible-core"
-  - [ ] `$ sudo dnf install ansible-core -y && dnf install git -y`
+  - [ ] `$ sudo dnf install ansible-core git -y`
 3.	Estando en directorio "home", se copia el repositorio localmente
   - [ ]  ` $ cd ~ && git clone (pegar git)`
 4.	Se comprueba que haya conexión activa entre los "hosts"
-  - [ ] `$ ansible -i 192.168.1.15,192.168.1.10, all -m ping`
   - [ ] `$ ansible all -m ping`
 5.	Se instalan módulos necesarios
   - [ ] `$ ansible-galaxy install -r collections/requirements.yaml`
 6.	Se ejecutan comandos “ad-hoc” (Documents/)
 7.	Se ejecutan “playbooks”
-  - [ ] `$ ansible-playbook all playbook/hardening.yaml -K`
-  - [ ] `$ ansible-playbook all playbook/nfs_setup.yaml -K`
+  - [ ] `$ ansible-playbook playbook/hardening.yaml -K`
+  - [ ] `$ ansible-playbook playbook/nfs_setup.yaml -K`
