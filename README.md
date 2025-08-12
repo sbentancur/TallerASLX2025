@@ -36,5 +36,5 @@ Se definen las siguientes “IPs” y “hostnames” correspondientes:
   - [ ] `$ ansible-galaxy install -r collections/requirements.yaml`
 6.	Se ejecutan comandos “ad-hoc” (Documents/)
 7.	Se ejecutan “playbooks”
-  - [ ] `$ ansible-playbook playbook/hardening.yaml -K`
-  - [ ] `$ ansible-playbook playbook/nfs_setup.yaml -K`
+  - [ ] `$ ansible-playbook playbooks/hardening.yaml -K`
+  - [ ] `$ ansible-playbook playbooks/nfs_setup.yaml -K`
