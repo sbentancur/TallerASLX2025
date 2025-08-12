@@ -67,6 +67,21 @@
         state: present
         update_cache: yes
 
+  - name: Activar Jail SSH Fail2ban
+    ansible.builtin.copy:
+      dest: /etc/fail2ban/jail.local
+      content: |
+        [DEFAULT]
+        bantime = 10m
+
+        [sshd]
+        enabled = true
+        filter = sshd
+        banaction = iptables
+        backend = systemd
+        maxretry = 5
+      notify: Reinicio Fail2ban
+
   - name: Habilitar y arrancar fail2ban
     ansible.builtin.systemd_service:
         name: fail2ban
@@ -82,3 +97,10 @@
     ansible.builtin.systemd_service:
       name: ssh
       state: restarted
+      
+  - name: Reinicio Fail2ban
+    ansible.builtin.systemd_service:
+      name: fail2ban
+      state: restarted
+
+
