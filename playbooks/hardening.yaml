@@ -80,7 +80,7 @@
         banaction = iptables
         backend = systemd
         maxretry = 5
-      notify: Reinicio Fail2ban
+    notify: Reinicio Fail2ban
 
   - name: Habilitar y arrancar fail2ban
     ansible.builtin.systemd_service:
