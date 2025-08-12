@@ -29,7 +29,7 @@ Se definen las siguientes “IPs” y “hostnames” correspondientes:
 2.	En Bastion01, instalar como administrador "ansible-core"
   - [ ] `$ sudo dnf install ansible-core git -y`
 3.	Estando en directorio "home", se copia el repositorio localmente
-  - [ ]  ` $ cd ~ && git clone (pegar git)`
+  - [ ]  ` $ cd ~ && git clone (pegar git) && cd TallerASLX2025`
 4.	Se comprueba que haya conexión activa entre los "hosts"
   - [ ] `$ ansible all -m ping`
 5.	Se instalan módulos necesarios
